@@ -16,7 +16,8 @@ st.markdown(
     Les tests ont été réalisés sur deux configurations : un MacBook Pro sous macOS équipé d’un CPU Apple M1 Pro (8 cœurs, 8 threads) 
     et un ThinkPad sous Ubuntu avec un CPU Intel i7-10610 (4 cœurs, 8 threads). 
     L’objectif est de comparer les performances des deux systèmes afin de soutenir mon rapport du laboratoire LAB6 en programmation système, 
-    enseigné par M. Alexandre BRIERE à l’école ESIEA.
+    enseigné par M. Alexandre BRIERE à l’école ESIEA.\n
+    Réalisé par Nguyen Hoang Tung PHAM - 4A FISA | TD 44 | TC 2 | Data&IA
     """
 )
 
