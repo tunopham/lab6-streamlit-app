@@ -111,8 +111,8 @@ fig_single.update_layout(
     template="plotly_white",
     plot_bgcolor="white",
     paper_bgcolor="white",
-    height=1080,
-    width=1920,
+    height=720,
+    width=1280,
     margin=dict(l=50, r=50, t=50, b=50)
 )
 
@@ -172,8 +172,8 @@ if comparison:
         template="plotly_white",
         plot_bgcolor="white",
         paper_bgcolor="white",
-        height=1080,
-        width=1920,
+        height=720,
+        width=1280,
         margin=dict(l=50, r=50, t=50, b=50)
     )
 
