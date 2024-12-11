@@ -44,7 +44,6 @@ sheet1, sheet2 = load_data()
 selected_data = sheet1 if sheet_selection == "MACOS-M1PRO" else sheet2
 selected_sheet_name = "MACOS-M1PRO" if sheet_selection == "MACOS-M1PRO" else "UBUNTU-I7"
 
-# Dataframe display
 with st.expander(f"📂 Afficher les données de : {selected_sheet_name}"):
     st.dataframe(selected_data)
 
@@ -57,7 +56,6 @@ color_map = {
     "UBUNTU-I7": "royalblue",
 }
 
-# Add trace for the selected sheet
 fig_single.add_trace(
     go.Scatter(
         x=selected_data["Number of threads"],
@@ -69,7 +67,6 @@ fig_single.add_trace(
     )
 )
 
-# Ajouter une annotation pour la valeur minimale
 fig_single.add_annotation(
     x=min_time_row["Number of threads"],
     y=min_time_row["Real time used"],
@@ -84,7 +81,6 @@ fig_single.add_annotation(
     arrowcolor="red"
 )
 
-# Configuration du layout
 fig_single.update_layout(
     title=dict(
         text=f"📈 Temps d'exécution pour {selected_sheet_name}",
@@ -116,14 +112,9 @@ fig_single.update_layout(
     margin=dict(l=50, r=50, t=50, b=50)
 )
 
-
-st.plotly_chart(fig_single, use_container_width=True)
-
 # Comparison graph
+fig_comparison = go.Figure()
 if comparison:
-    st.subheader("🔄 Comparaison entre les deux OS-CPU")
-    fig_comparison = go.Figure()
-
     fig_comparison.add_trace(
         go.Scatter(
             x=sheet1["Number of threads"],
@@ -145,7 +136,6 @@ if comparison:
         )
     )
 
-    # Configuration du layout pour la comparaison
     fig_comparison.update_layout(
         title=dict(
             text="📊 Comparaison : Temps d'exécution pour les deux OS-CPU",
@@ -177,4 +167,16 @@ if comparison:
         margin=dict(l=50, r=50, t=50, b=50)
     )
 
-    st.plotly_chart(fig_comparison, use_container_width=True)
+tabs = ["📈 Single Graph"]
+if comparison:
+    tabs.append("🔄 Comparison Graph")
+    st.toast("🔄 Mode comparaison activé ! Accédez à l'onglet Comparaison pour voir les résultats.")
+
+active_tab = st.tabs(tabs)
+
+with active_tab[0]:
+    st.plotly_chart(fig_single, use_container_width=True)
+
+if comparison:
+    with active_tab[1]:
+        st.plotly_chart(fig_comparison, use_container_width=True)
